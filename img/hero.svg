@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220" role="img" aria-label="A draft model guesses several tokens ahead; the target model checks them all in one pass, keeps the correct ones and fixes the first wrong one" font-family="JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Consolas, DejaVu Sans Mono, monospace">
+<g opacity="0.4"><rect x="25" y="110" width="70" height="44" rx="8" fill="#f1f1ef" stroke="#e0e0dc" stroke-width="1.5"/><text x="60.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#5f6670">a</text></g>
+<g opacity="0.52"><rect x="103" y="110" width="70" height="44" rx="8" fill="#f1f1ef" stroke="#e0e0dc" stroke-width="1.5"/><text x="138.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#5f6670">small</text></g>
+<g opacity="0.64"><rect x="181" y="110" width="70" height="44" rx="8" fill="#f1f1ef" stroke="#e0e0dc" stroke-width="1.5"/><text x="216.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#5f6670">model</text></g>
+<g opacity="0.76"><rect x="259" y="110" width="70" height="44" rx="8" fill="#f1f1ef" stroke="#e0e0dc" stroke-width="1.5"/><text x="294.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#5f6670">guesses</text></g>
+<g opacity="0.88"><rect x="337" y="110" width="70" height="44" rx="8" fill="#f1f1ef" stroke="#e0e0dc" stroke-width="1.5"/><text x="372.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#5f6670">the</text></g>
+<g opacity="1.0"><rect x="415" y="110" width="70" height="44" rx="8" fill="#f1f1ef" stroke="#e0e0dc" stroke-width="1.5"/><text x="450.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#5f6670">next</text></g>
+<g opacity="1"><rect x="493" y="110" width="70" height="44" rx="8" fill="#efeafd" stroke="#6741d9" stroke-width="1.5" stroke-dasharray="5 4"/><text x="528.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#1f2328">few</text></g>
+<circle cx="528.0" cy="80" r="11" fill="#2e9e5b"/><path d="M523.0 80 l3.5 3.8 l6.5 -7.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<g opacity="1"><rect x="571" y="110" width="70" height="44" rx="8" fill="#efeafd" stroke="#6741d9" stroke-width="1.5" stroke-dasharray="5 4"/><text x="606.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#1f2328">words</text></g>
+<circle cx="606.0" cy="80" r="11" fill="#2e9e5b"/><path d="M601.0 80 l3.5 3.8 l6.5 -7.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<g opacity="1"><rect x="649" y="110" width="70" height="44" rx="8" fill="#efeafd" stroke="#6741d9" stroke-width="1.5" stroke-dasharray="5 4"/><text x="684.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#1f2328">ahead</text></g>
+<circle cx="684.0" cy="80" r="11" fill="#2e9e5b"/><path d="M679.0 80 l3.5 3.8 l6.5 -7.5" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+<g opacity="1"><rect x="727" y="110" width="70" height="44" rx="8" fill="#fbeaea" stroke="#d64545" stroke-width="1.5" stroke-dasharray="5 4"/><text x="762.0" y="137.0" text-anchor="middle" font-size="15" font-weight="500" fill="#1f2328">fast</text></g>
+<circle cx="762.0" cy="80" r="11" fill="#d64545"/><path d="M757.8 75.8 l8.4 8.4 M766.2 75.8 l-8.4 8.4" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+<g opacity="1"><rect x="805" y="110" width="70" height="44" rx="8" fill="#e7f5ec" stroke="#2e9e5b" stroke-width="1.5"/><text x="840.0" y="137.0" text-anchor="middle" font-size="15" font-weight="650" fill="#1f2328">and</text></g>
+<text x="645.0" y="44" text-anchor="middle" font-size="14" fill="#5f6670">target model checks all guesses in one pass</text>
+<path d="M493 168 v8 H797 v-8" fill="none" stroke="#6741d9" stroke-width="1.5"/>
+<text x="645.0" y="198" text-anchor="middle" font-size="14" fill="#6741d9">draft model guesses</text>
+<text x="840.0" y="198" text-anchor="middle" font-size="14" fill="#2e9e5b">target’s fix</text>
+</svg>

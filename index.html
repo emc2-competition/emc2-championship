@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Speculative Decoding Championship</title>
+  <meta name="description" content="Speculative Decoding Championship at the emc2 workshop: build the best draft model for speculative decoding of a fixed target model.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Speculative Decoding Championship</a>
+    <ul>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#phases">Phases</a></li>
+      <li><a href="#prizes">Prizes</a></li>
+      <li><a href="#how-it-works">How it works</a></li>
+      <li><a href="#scoring">Scoring</a></li>
+      <li><a href="#rules">Rules</a></li>
+      <li><a href="#dates">Dates</a></li>
+      <li><a href="#links">Links</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">A competition of the <a href="https://www.emc2-ai.org/aaai-27">emc2 workshop at AAAI 2027</a></p>
+    <h1>Speculative Decoding Championship</h1>
+    <p class="tagline">Build the best draft model for a fixed large language model: one that guesses
+      right most often, uses the least memory, and makes generation fastest.</p>
+    <div class="buttons">
+      <a class="button primary" href="#get-started">Get started</a>
+    </div>
+    <figure class="hero-figure">
+      <img src="img/hero.svg" alt="A draft model guesses several tokens ahead; the target model checks them all in one pass, keeps the correct ones and fixes the first wrong one.">
+    </figure>
+  </div>
+</header>
+
+<main>
+
+<section id="overview">
+  <div class="wrap">
+    <h2>Overview</h2>
+    <p class="lead">Large language models write one token at a time, and each token needs a full,
+      expensive pass through the model. Speculative decoding speeds this up: a small, fast
+      <strong>draft model</strong> guesses the next few tokens, and the large <strong>target
+      model</strong> checks all the guesses in a single pass. Every correct guess is a token the
+      target didn't have to produce on its own, and the output stays the target's output.</p>
+    <p>In this competition the target model and the inference engine are fixed. You design and
+      build the draft model. The competition runs in <a href="#phases">two phases</a>: first you
+      submit a <strong>report</strong> describing your draft model. The top 3 teams win
+      <a href="#prizes">prizes</a>, present their work at the emc2 workshop at AAAI 2027, and
+      go on to submit a <strong>paper</strong> and their draft model. In phase 2, the better your
+      draft guesses and the lighter and faster it is, the higher you score. You submit model
+      files only, never code, and we evaluate every draft model ourselves on the same hardware.</p>
+
+    <div class="spec">
+      <dl>
+        <div><dt>target</dt><dd>Qwen3.8-27B <span class="cmt"># bf16, text only</span></dd></div>
+        <div><dt>engine</dt><dd>vLLM v0.31.0 <span class="cmt"># unmodified</span></dd></div>
+        <div><dt>context</dt><dd>16K tokens</dd></div>
+        <div><dt>baseline</dt><dd>built-in MTP head <span class="cmt"># scores 100</span></dd></div>
+        <div><dt>phase_1</dt><dd>a report about your draft model</dd></div>
+        <div><dt>phase_2</dt><dd>a paper + draft model weights and config</dd></div>
+        <div><dt>eval_hw</dt><dd><span class="tbd">TBD</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="phases">
+  <div class="wrap">
+    <h2>Two phases</h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-num">01</div>
+        <h3>Report</h3>
+        <p>Every team submits a report about its draft model. No registration is needed.</p>
+        <ul class="bullets">
+          <li>Reports are reviewed and ranked.</li>
+          <li>The top <strong>3</strong> teams win <a href="#prizes">prizes</a> and advance to phase 2.</li>
+          <li>Format, page limit and review criteria: <span class="tbd">TBD</span></li>
+        </ul>
+      </div>
+      <div class="phase two">
+        <div class="phase-num">02</div>
+        <h3>Paper</h3>
+        <p>The 3 selected teams write a paper and submit their draft model.</p>
+        <ul class="bullets two">
+          <li>Only phase 2 draft models are run on our hardware.</li>
+          <li>Each one is scored on a hidden test set (see <a href="#scoring">Scoring</a>).</li>
+          <li>Paper format and page limit: <span class="tbd">TBD</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="awards" id="prizes">
+      <h3>For the 3 winners of phase 1</h3>
+      <ul>
+        <li><span class="award-kind">prize</span><strong>Prizes</strong><span><span class="tbd">to be announced</span></span></li>
+        <li><span class="award-kind">stage</span><strong>A talk at the emc2 workshop</strong><span>Present your work at <a href="https://www.emc2-ai.org/aaai-27">emc2 at AAAI 2027</a>, Montréal, February 2027.</span></li>
+        <li><span class="award-kind">next</span><strong>A place in phase 2</strong><span>Write the paper and submit your draft model for evaluation on our hardware.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p>Speculative decoding pairs two models. The <strong>drafter</strong> (your model) is small
+      and cheap, so it quickly guesses the next few tokens. The <strong>verifier</strong> is the
+      large target model: it checks all the guesses in one forward pass, keeps the ones it agrees
+      with, and supplies the correct token at the first miss. The text is exactly what the
+      verifier would have written, produced in fewer of its expensive passes.</p>
+    <figure>
+      <img src="img/drafter-verifier.svg" alt="Animation: after “Paris is”, the drafter guesses “the capital of Germany”; the verifier checks all four guesses in one pass, keeps “the capital of” and replaces “Germany” with “France”, so four tokens are added for one pass of the target model.">
+      <figcaption>The drafter–verifier loop (animated).</figcaption>
+    </figure>
+    <figure>
+      <img src="img/how-it-works.svg" alt="One speculative decoding step: the draft guesses “the capital of Germany”, the target checks the guesses in one pass, accepts three and supplies “France”.">
+      <figcaption>One decoding step. The <em>acceptance length</em> τ is the number of tokens
+        produced per target pass: 1 plus the number of accepted guesses.</figcaption>
+    </figure>
+
+    <h3 id="get-started">Your path through the competition</h3>
+    <ol class="steps">
+      <li><strong>Write a report</strong><span>Phase 1: describe your draft model and submit the report.</span></li>
+      <li><strong>Get selected</strong><span>The top 3 teams win prizes, present at the emc2 workshop and advance to phase 2.</span></li>
+      <li><strong>Build and check</strong><span>Phase 2: train the draft, then run the kit's <code>validate</code> and <code>eval</code> locally.</span></li>
+      <li><strong>Submit</strong><span>Submit your paper, push the draft model to a gated Hugging Face repo and send us its <code>repo@commit</code>.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="scoring">
+  <div class="wrap">
+    <h2>Scoring</h2>
+    <figure>
+      <img src="img/scoring.svg" alt="Score weights: acceptance length 50 percent, draft memory 25 percent, time per output token 25 percent.">
+    </figure>
+    <p>This scoring applies to the draft models submitted in <strong>phase 2</strong>. Phase 1
+      reports are reviewed, not run; see <a href="#phases">Two phases</a>.</p>
+    <p>Every phase 2 draft model runs on our hardware on a hidden test set: fresh prompts written
+      by the organizers, never published. Each metric is measured relative to the public baseline (B).</p>
+    <table class="data">
+      <thead><tr><th>Metric</th><th>Weight</th><th>What it measures</th><th>Better</th></tr></thead>
+      <tbody>
+        <tr><td>Acceptance length τ</td><td><span class="bar" style="--w: 50%"></span>50%</td><td>Tokens produced per target forward pass</td><td>Higher</td></tr>
+        <tr><td>Draft memory M</td><td><span class="bar" style="--w: 25%"></span>25%</td><td>Draft weights plus its KV cache at the full 16K context</td><td>Lower</td></tr>
+        <tr><td>Time per output token (TPOT)</td><td><span class="bar" style="--w: 25%"></span>25%</td><td>Real decoding speed, median over prompts</td><td>Lower</td></tr>
+      </tbody>
+    </table>
+    <div class="formula">Score = 100 × ( 0.50·(τ−1)/(τ<sub>B</sub>−1) + 0.25·M<sub>B</sub>/M + 0.25·TPOT<sub>B</sub>/TPOT )</div>
+    <p>The baseline scores exactly 100. To be ranked, a draft's acceptance length must reach at
+      least a set fraction of the baseline's, and the memory and speed terms are capped, so a tiny
+      draft that barely guesses can't win on size alone. <span class="note">Gate and cap values:
+      <span class="tbd">TBD</span>, calibrated before launch.</span></p>
+  </div>
+</section>
+
+<section id="rules">
+  <div class="wrap">
+    <h2>Rules</h2>
+    <p>A summary. The full rules document is the reference:
+      <a class="placeholder" href="#">Full rules</a> <span class="tbd">TBD</span>.</p>
+    <div class="rule-cols">
+      <div>
+        <h3><span class="idx">01</span> Report</h3>
+        <ul class="bullets">
+          <li>One report per team describing its draft model.</li>
+          <li>Format and page limit: <span class="tbd">TBD</span></li>
+          <li>Review criteria: <span class="tbd">TBD</span></li>
+          <li>The top 3 teams win prizes, present at the emc2 workshop and advance to phase 2.</li>
+        </ul>
+      </div>
+      <div>
+        <h3><span class="idx two">02</span> Paper</h3>
+        <ul class="bullets two">
+          <li>A paper about your draft model. Format and page limit: <span class="tbd">TBD</span></li>
+          <li>The draft model as one folder: <code>config.json</code>, <code>*.safetensors</code> weights,
+            <code>spec.json</code> naming the draft family, and <code>metadata.json</code>.</li>
+          <li>Draft families: <code>mtp</code> (a replacement multi-token-prediction head, like
+            the baseline), <code>eagle3</code>, <code>draft_model</code> (a small language model
+            with the target's vocabulary) or <code>medusa</code>.</li>
+          <li>At most 1.5B parameters and 3 GB of files.</li>
+          <li>Hosted in your own gated Hugging Face repo; you send us <code>repo@commit</code>.</li>
+          <li><strong>One final submission per selected team.</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Fixed for everyone in phase 2</h3>
+    <ul class="tags">
+      <li>Qwen3.8-27B, bf16</li>
+      <li>its tokenizer + chat template</li>
+      <li>thinking off</li>
+      <li>vLLM v0.31.0, unmodified</li>
+      <li>standard verification</li>
+      <li>16K context</li>
+      <li>batch size 1</li>
+      <li>greedy decoding</li>
+      <li>K guesses per step <span class="tbd">TBD</span></li>
+      <li>no tree attention</li>
+    </ul>
+
+    <div class="callout">
+      <h3>Not allowed</h3>
+      <ul class="crosses">
+        <li>Any code: custom classes, remote code, pickle files, symlinks</li>
+        <li>Faking acceptance or changing how guesses are verified</li>
+        <li>Keeping state across requests</li>
+        <li>Copying target layers into the draft (sharing its embedding or output layer is fine)</li>
+        <li>Training on the hidden test prompts</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="dates">
+  <div class="wrap">
+    <h2>Important dates</h2>
+    <ol class="timeline">
+      <li><span class="when"><span class="tbd">TBD</span></span><span class="what">Participant kit released</span></li>
+      <li><span class="when"><span class="tbd">TBD</span></span><span class="what">Phase 1: report submission deadline</span></li>
+      <li><span class="when"><span class="tbd">TBD</span></span><span class="what">Phase 1: winners announced (they advance to phase 2)</span></li>
+      <li><span class="when"><span class="tbd">TBD</span></span><span class="what">Phase 2: paper and draft model submission deadline</span></li>
+      <li><span class="when"><span class="tbd">TBD</span></span><span class="what">Phase 2: results announced</span></li>
+      <li class="finale"><span class="when">Feb 2027</span><span class="what"><a href="https://www.emc2-ai.org/aaai-27">emc2 workshop at AAAI 2027</a>, Montréal: phase 1 winners present</span></li>
+    </ol>
+    <p class="note">All deadlines are 23:59 Anywhere on Earth (AoE) <span class="tbd">TBD</span>.</p>
+  </div>
+</section>
+
+<section id="links">
+  <div class="wrap">
+    <h2>Important links</h2>
+    <ul class="linklist">
+      <li><span class="kind">Phase 1</span><span><a class="placeholder" href="#">Report template</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Phase 1</span><span><a class="placeholder" href="#">Report submission</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Phase 2</span><span><a class="placeholder" href="#">Paper submission</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Phase 2</span><span><a class="placeholder" href="#">Draft model submission form</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Kit</span><span><a class="placeholder" href="#">Participant kit on GitHub</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Rules</span><span><a class="placeholder" href="#">Full rules document</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Target</span><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen/Qwen3.8-27B on Hugging Face <span class="ext">↗</span></a></li>
+      <li><span class="kind">Engine</span><a href="https://hub.docker.com/r/vllm/vllm-openai">vllm/vllm-openai on Docker Hub (v0.31.0, pinned in the kit) <span class="ext">↗</span></a></li>
+      <li><span class="kind">Workshop</span><a href="https://www.emc2-ai.org/aaai-27">emc2 workshop at AAAI 2027 (emc2-ai.org/aaai-27) <span class="ext">↗</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>FAQ</h2>
+    <details>
+      <summary>How many teams reach phase 2?</summary>
+      <p>The top 3 teams from the report phase. Only those teams write a paper and submit a
+        draft model.</p>
+    </details>
+    <details>
+      <summary>What do the phase 1 winners get?</summary>
+      <p>Prizes (to be announced), a talk at the emc2 workshop at AAAI 2027 in Montréal in
+        February 2027, and a place in phase 2.</p>
+    </details>
+    <details>
+      <summary>Is my phase 1 report run on your hardware?</summary>
+      <p>No. Reports are reviewed. Only phase 2 draft models are run and scored on our hardware.</p>
+    </details>
+    <details>
+      <summary>Do I need the official evaluation GPU for phase 2?</summary>
+      <p>No. Any NVIDIA GPU with at least 80 GB of memory runs the kit. Acceptance length and
+        memory don't depend on the GPU, and the kit compares your speed with the baseline's on your
+        own hardware.</p>
+    </details>
+    <details>
+      <summary>Can I modify vLLM or submit code?</summary>
+      <p>No. The engine is the same unmodified vLLM release for everyone, and submissions contain
+        model files only.</p>
+    </details>
+    <details>
+      <summary>Which training data can I use?</summary>
+      <p>Any data you are allowed to use, including text generated by the target model. Only the
+        hidden test prompts are off limits, and they are never published.</p>
+    </details>
+    <details>
+      <summary>How large can my draft model be?</summary>
+      <p>At most 1.5 billion parameters and 3 GB of files. Smaller drafts also score better on memory.</p>
+    </details>
+    <details>
+      <summary>Will my submission be public?</summary>
+      <p>No. You keep it in a gated Hugging Face repository and approve only the organizers'
+        account.</p>
+    </details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Organizers &amp; contact</h2>
+    <p>Organized by the <a href="https://www.emc2-ai.org/">emc2 workshop</a>.</p>
+    <p>Organizers: <span class="tbd">TBD</span></p>
+    <p>Questions: <a class="placeholder" href="#">contact email</a> <span class="tbd">TBD</span></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Speculative Decoding Championship · <a href="https://www.emc2-ai.org/">emc2 workshop</a></span>
+    <span>Last updated: <span class="tbd">TBD</span></span>
+  </div>
+</footer>
+
+</body>
+</html>
