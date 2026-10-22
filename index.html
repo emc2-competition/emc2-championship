@@ -14,14 +14,8 @@
     <a class="brand" href="#top">Speculative Decoding Championship</a>
     <ul>
       <li><a href="#overview">Overview</a></li>
-      <li><a href="#phases">Phases</a></li>
-      <li><a href="#prizes">Prizes</a></li>
-      <li><a href="#how-it-works">How it works</a></li>
-      <li><a href="#scoring">Scoring</a></li>
       <li><a href="#rules">Rules</a></li>
       <li><a href="#dates">Dates</a></li>
-      <li><a href="#links">Links</a></li>
-      <li><a href="#faq">FAQ</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -34,7 +28,7 @@
     <p class="tagline">Build the best draft model for a fixed large language model: one that guesses
       right most often, uses the least memory, and makes generation fastest.</p>
     <div class="buttons">
-      <a class="button primary" href="#get-started">Get started</a>
+      <a class="button primary" href="https://github.com/emc2-competition/emc2-kit"><svg class="gh" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>Get started</a>
     </div>
     <figure class="hero-figure">
       <img src="img/hero.svg" alt="A draft model guesses several tokens ahead; the target model checks them all in one pass, keeps the correct ones and fixes the first wrong one.">
@@ -105,7 +99,6 @@
       <ul>
         <li><span class="award-kind">prize</span><strong>Prizes</strong><span><span class="tbd">to be announced</span></span></li>
         <li><span class="award-kind">stage</span><strong>A talk at the emc2 workshop</strong><span>Present your work at <a href="https://www.emc2-ai.org/aaai-27">emc2 at AAAI 2027</a>, Montréal, February 2027.</span></li>
-        <li><span class="award-kind">next</span><strong>A place in phase 2</strong><span>Write the paper and submit your draft model for evaluation on our hardware.</span></li>
       </ul>
     </div>
   </div>
@@ -196,20 +189,6 @@
       </div>
     </div>
 
-    <h3>Fixed for everyone in phase 2</h3>
-    <ul class="tags">
-      <li>Qwen3.8-27B, bf16</li>
-      <li>its tokenizer + chat template</li>
-      <li>thinking off</li>
-      <li>vLLM v0.31.0, unmodified</li>
-      <li>standard verification</li>
-      <li>16K context</li>
-      <li>batch size 1</li>
-      <li>greedy decoding</li>
-      <li>K guesses per step <span class="tbd">TBD</span></li>
-      <li>no tree attention</li>
-    </ul>
-
     <div class="callout">
       <h3>Not allowed</h3>
       <ul class="crosses">
@@ -243,14 +222,10 @@
     <h2>Important links</h2>
     <ul class="linklist">
       <li><span class="kind">Phase 1</span><span><a class="placeholder" href="#">Report template</a> <span class="tbd">TBD</span></span></li>
-      <li><span class="kind">Phase 1</span><span><a class="placeholder" href="#">Report submission</a> <span class="tbd">TBD</span></span></li>
-      <li><span class="kind">Phase 2</span><span><a class="placeholder" href="#">Paper submission</a> <span class="tbd">TBD</span></span></li>
-      <li><span class="kind">Phase 2</span><span><a class="placeholder" href="#">Draft model submission form</a> <span class="tbd">TBD</span></span></li>
-      <li><span class="kind">Kit</span><span><a class="placeholder" href="#">Participant kit on GitHub</a> <span class="tbd">TBD</span></span></li>
-      <li><span class="kind">Rules</span><span><a class="placeholder" href="#">Full rules document</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Submit</span><span><a class="placeholder" href="#">Submission</a> <span class="tbd">TBD</span></span></li>
+      <li><span class="kind">Kit</span><a href="https://github.com/emc2-competition/emc2-kit">Participant kit on GitHub (emc2-competition/emc2-kit) <span class="ext">↗</span></a></li>
       <li><span class="kind">Target</span><a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen/Qwen3.8-27B on Hugging Face <span class="ext">↗</span></a></li>
       <li><span class="kind">Engine</span><a href="https://hub.docker.com/r/vllm/vllm-openai">vllm/vllm-openai on Docker Hub (v0.31.0, pinned in the kit) <span class="ext">↗</span></a></li>
-      <li><span class="kind">Workshop</span><a href="https://www.emc2-ai.org/aaai-27">emc2 workshop at AAAI 2027 (emc2-ai.org/aaai-27) <span class="ext">↗</span></a></li>
     </ul>
   </div>
 </section>
@@ -260,8 +235,7 @@
     <h2>FAQ</h2>
     <details>
       <summary>How many teams reach phase 2?</summary>
-      <p>The top 3 teams from the report phase. Only those teams write a paper and submit a
-        draft model.</p>
+      <p>The top 3 teams from the report phase.</p>
     </details>
     <details>
       <summary>What do the phase 1 winners get?</summary>
@@ -304,8 +278,7 @@
   <div class="wrap">
     <h2>Organizers &amp; contact</h2>
     <p>Organized by the <a href="https://www.emc2-ai.org/">emc2 workshop</a>.</p>
-    <p>Organizers: <span class="tbd">TBD</span></p>
-    <p>Questions: <a class="placeholder" href="#">contact email</a> <span class="tbd">TBD</span></p>
+    <p>Questions: <a href="mailto:emc2competition@gmail.com">emc2competition@gmail.com</a></p>
   </div>
 </section>
 
@@ -314,7 +287,7 @@
 <footer>
   <div class="wrap">
     <span>Speculative Decoding Championship · <a href="https://www.emc2-ai.org/">emc2 workshop</a></span>
-    <span>Last updated: <span class="tbd">TBD</span></span>
+    <span>Last updated: October 22, 2026</span>
   </div>
 </footer>
 

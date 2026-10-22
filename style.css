@@ -54,7 +54,7 @@ a:hover { text-decoration: underline; }
 
 /* The geeky part: headings, navigation, labels and numbers use the monospace font */
 h1, h2, h3, .nav, .eyebrow, .button, .spec, .phase-num, .idx, .steps strong,
-.steps li::before, th, summary, .tags, .timeline .when, .linklist .kind, .tbd, .formula, footer {
+.steps li::before, th, summary, .timeline .when, .linklist .kind, .tbd, .formula, footer {
   font-family: var(--mono);
 }
 h2::before { content: "# "; color: var(--accent); font-weight: 400; }
@@ -80,8 +80,8 @@ code {
 }
 .nav .wrap { display: flex; align-items: center; gap: 24px; height: 56px; max-width: 1120px; }
 .nav .brand { font-weight: 650; color: var(--text); white-space: nowrap; }
-.nav ul { display: flex; gap: 14px; list-style: none; margin: 0 0 0 auto; padding: 0; overflow-x: auto; scrollbar-width: none; }
-.nav li a { color: var(--muted); font-size: 0.82rem; white-space: nowrap; }
+.nav ul { display: flex; gap: 24px; list-style: none; margin: 0 0 0 auto; padding: 0; overflow-x: auto; scrollbar-width: none; }
+.nav li a { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
 .nav li a:hover { color: var(--text); text-decoration: none; }
 
 /* ---- Hero ---- */
@@ -110,6 +110,7 @@ code {
   transition: transform 0.1s, box-shadow 0.1s;
 }
 .button.primary { background: var(--accent); color: #fff; }
+.button .gh { width: 1.15em; height: 1.15em; fill: currentColor; vertical-align: -0.2em; margin-right: 9px; }
 .button:hover { text-decoration: none; transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
 
 /* ---- Sections: colour bands instead of dividers ---- */
@@ -148,7 +149,7 @@ figcaption { color: var(--muted); font-size: 0.92rem; margin-top: 10px; text-ali
 /* Phase 1 winners: a card with the button's offset shadow, three columns of rewards */
 .awards { margin-top: 44px; background: var(--surface); border: 2px solid var(--ink); border-radius: 4px; box-shadow: 5px 5px 0 var(--accent); padding: 4px 24px 20px; }
 .awards h3 { margin: 16px 0 14px; }
-.awards ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.awards ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .awards li { border-left: 3px solid var(--rule); padding-left: 14px; }
 .awards .award-kind { display: block; font-family: var(--mono); font-size: 0.78rem; color: var(--accent); }
 .awards .award-kind::after { content: ":"; }
@@ -208,9 +209,6 @@ table.data td:nth-child(2) { white-space: nowrap; font-family: var(--mono); font
 .rule-cols h3 { margin-top: 8px; }
 .idx { display: inline-block; border: 2px solid var(--accent); color: var(--ink); font-size: 0.75rem; font-weight: 700; padding: 1px 7px; border-radius: 3px; margin-right: 8px; vertical-align: 2px; }
 .idx.two { border-color: var(--ok); }
-ul.tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-ul.tags li { font-size: 0.85rem; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--rule); color: var(--ink); }
-ul.tags li::before { content: "▸ "; color: var(--accent); }
 .callout { margin-top: 32px; padding: 6px 24px 18px; background: #fdf0f0; border-left: 4px solid var(--bad); border-radius: 0 var(--radius) var(--radius) 0; }
 .callout h3 { color: var(--ink); margin-top: 16px; }
 
